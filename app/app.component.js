@@ -27,9 +27,11 @@ System.register(['angular2/core', './post.service', "angular2/http"], function(e
             AppComponent = (function () {
                 function AppComponent(_postService) {
                     this._postService = _postService;
+                }
+                AppComponent.prototype.ngOnInit = function () {
                     this._postService.getPosts()
                         .subscribe(function (posts) { return console.log(posts); });
-                }
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
