@@ -27,10 +27,13 @@ System.register(['angular2/core', './post.service', "angular2/http"], function(e
             AppComponent = (function () {
                 function AppComponent(_postService) {
                     this._postService = _postService;
+                    // this._postService.createPost({
+                    //     userId: 1, title: "a", body: "b"
+                    // });
                 }
                 AppComponent.prototype.ngOnInit = function () {
                     this._postService.getPosts()
-                        .subscribe(function (posts) { return console.log(posts); });
+                        .subscribe(function (posts) { return console.log(posts[0].title); });
                 };
                 AppComponent = __decorate([
                     core_1.Component({
