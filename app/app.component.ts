@@ -7,7 +7,7 @@ import {OnInit} from 'angular2/core';
     selector: 'my-app',
     template: `
         <div *ngIf="isLoading">
-            <i class="fa fa-spinner fa-spin"></i>
+            <i class="fa fa-spinner fa-spin fa-3x"></i>
         </div>
     `,
     providers: [PostService, HTTP_PROVIDERS]
