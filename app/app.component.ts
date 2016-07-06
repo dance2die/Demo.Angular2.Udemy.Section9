@@ -6,10 +6,15 @@ import {OnInit} from 'angular2/core';
 @Component({
     selector: 'my-app',
     template: `
+        <div *ngIf="isLoading">
+            <i class="fa fa-spinner fa-spin"></i>
+        </div>
     `,
     providers: [PostService, HTTP_PROVIDERS]
 })
 export class AppComponent implements OnInit {
+    isLoading = true;   // used for loader icon.
+
     constructor(private _postService: PostService) {
         // this._postService.createPost({
         //     userId: 1, title: "a", body: "b"
@@ -18,6 +23,9 @@ export class AppComponent implements OnInit {
 
     ngOnInit():any {
         this._postService.getPosts()
-            .subscribe(posts => console.log(posts[0].title));
+            .subscribe(posts => {
+                this.isLoading = false;
+                console.log(posts[0].title);
+            });
     }
 }
