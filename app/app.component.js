@@ -1,4 +1,4 @@
-System.register(['angular2/core', './post.service', "angular2/http", './github.service'], function(exports_1, context_1) {
+System.register(['angular2/core', './post.service', "angular2/http", './github-user-follows.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './post.service', "angular2/http", './github.s
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, post_service_1, http_1, github_service_1;
+    var core_1, post_service_1, http_1, github_user_follows_component_1;
     var AppComponent;
     return {
         setters:[
@@ -23,14 +23,13 @@ System.register(['angular2/core', './post.service', "angular2/http", './github.s
             function (http_1_1) {
                 http_1 = http_1_1;
             },
-            function (github_service_1_1) {
-                github_service_1 = github_service_1_1;
+            function (github_user_follows_component_1_1) {
+                github_user_follows_component_1 = github_user_follows_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent(_postService, _githubService) {
+                function AppComponent(_postService) {
                     this._postService = _postService;
-                    this._githubService = _githubService;
                     this.isLoading = true; // used for loader icon.
                     // this._postService.createPost({
                     //     userId: 1, title: "a", body: "b"
@@ -43,18 +42,15 @@ System.register(['angular2/core', './post.service', "angular2/http", './github.s
                         _this.isLoading = false;
                         console.log(posts[0].title);
                     });
-                    this._githubService.getUserFollowers()
-                        .subscribe(function (followers) {
-                        _this.followers = followers;
-                    });
                 };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <div *ngIf=\"isLoading\">\n            <i class=\"fa fa-spinner fa-spin fa-3x\"></i>\n        </div>\n        <github-user-followers followers=\"followers\"></github-user-followers>\n    ",
-                        providers: [post_service_1.PostService, github_service_1.GithubService, http_1.HTTP_PROVIDERS]
+                        template: "\n        <div *ngIf=\"isLoading\">\n            <i class=\"fa fa-spinner fa-spin fa-3x\"></i>\n        </div>\n        <github-user-followers></github-user-followers>\n    ",
+                        providers: [post_service_1.PostService, http_1.HTTP_PROVIDERS],
+                        directives: [github_user_follows_component_1.GithubUserFollowersComponent]
                     }), 
-                    __metadata('design:paramtypes', [post_service_1.PostService, github_service_1.GithubService])
+                    __metadata('design:paramtypes', [post_service_1.PostService])
                 ], AppComponent);
                 return AppComponent;
             }());
